@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+void mostrar_diferencias(const vector<float>& calificaciones1, const vector<float>& calificaciones2) {
+    cout << "Diferencias de calificaciones entre las dos materias:" << endl;
+    for (size_t i = 0; i < calificaciones1.size(); i++) {
+        float diferencia = calificaciones1[i] - calificaciones2[i];
+        cout << "Estudiante " << (i + 1) << ": " << diferencia << endl;
+    }
+}
+int main() {
+    int num_estudiantes;
+    cout << "Ingrese el numero de estudiantes: ";
+    cin >> num_estudiantes;
+
+    vector<float> calificaciones_materia1(num_estudiantes);
+    vector<float> calificaciones_materia2(num_estudiantes);
+
+    // Ingreso de calificaciones para la primera materia
+    cout << "Ingrese las calificaciones para la primera materia:" << endl;
+    for (int i = 0; i < num_estudiantes; i++) {
+        cout << "Estudiante " << (i + 1) << ": ";
+        cin >> calificaciones_materia1[i];
+    }
+    // Ingreso de calificaciones para la segunda materia
+    cout << "Ingrese las calificaciones para la segunda materia:" << endl;
+    for (int i = 0; i < num_estudiantes; i++) {
+        cout << "Estudiante " << (i + 1) << ": ";
+        cin >> calificaciones_materia2[i];
+    }
+    // Mostrar las diferencias
+    mostrar_diferencias(calificaciones_materia1, calificaciones_materia2);
+    return 0;
+}
