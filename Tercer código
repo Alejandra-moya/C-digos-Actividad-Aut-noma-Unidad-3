@@ -1,0 +1,110 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+   // Declaración de los vectores para almacenar datos de estudiantes
+   vector<string> nombres;
+   vector<int> edades;
+   int opcion;
+   do {
+       // Menú de opciones
+       cout << "\nRegistro de Estudiantes\n";
+       cout << "1. Agregar estudiante\n";
+       cout << "2. Modificar estudiante\n";
+       cout << "3. Eliminar estudiante\n";
+       cout << "4. Buscar estudiante\n";
+       cout << "5. Salir\n";
+       cout << "Seleccione una opcion: ";
+       cin >> opcion;
+       switch(opcion) {
+           case 1: {
+               // Agregar estudiante
+               string nombre;
+               int edad;
+               cout << "Nombre: ";
+               cin.ignore();
+               getline(cin, nombre);
+               cout << "Edad: ";
+               cin >> edad;
+               
+               // Agregar datos a los vectores
+               nombres.push_back(nombre);
+               edades.push_back(edad);
+               cout << "Estudiante agregado correctamente\n";
+               break;
+           }
+           case 2: {
+               // Modificar estudiante
+               if(nombres.empty()) {
+                   cout << "No hay estudiantes registrados\n";
+                   break;
+               }
+               string buscar;
+               cout << "Ingrese nombre a modificar: ";
+               cin.ignore();
+               getline(cin, buscar);
+               
+               // Buscar estudiante en el vector
+               for(size_t i = 0; i < nombres.size(); i++) {
+                   if(nombres[i] == buscar) {
+                       cout << "Nuevo nombre: ";
+                       getline(cin, nombres[i]);
+                       cout << "Nueva edad: ";
+                       cin >> edades[i];
+                       cout << "Informacion actualizada\n";
+                       break;
+                   }
+               }
+               break;
+           }
+           case 3: {
+               // Eliminar estudiante
+               if(nombres.empty()) {
+                   cout << "No hay estudiantes registrados\n";
+                   break;
+               }
+               string buscar;
+               cout << "Ingrese nombre que desea eliminar: ";
+               cin.ignore();
+               getline(cin, buscar);
+               
+               // Buscar y eliminar estudiante
+               for(size_t i = 0; i < nombres.size(); i++) {
+                   if(nombres[i] == buscar) {
+                       nombres.erase(nombres.begin() + i);
+                       edades.erase(edades.begin() + i);
+                       cout << "Estudiante eliminado\n";
+                       break;
+                   }
+               }
+               break;
+           }
+           case 4: {
+               // Buscar estudiante
+               if(nombres.empty()) {
+                   cout << "No hay estudiantes registrados\n";
+                   break;
+               }
+               string buscar;
+               cout << "Ingrese nombre a buscar: ";
+               cin.ignore();
+               getline(cin, buscar);
+               
+               // Buscar y mostrar información
+               bool encontrado = false;
+               for(size_t i = 0; i < nombres.size(); i++) {
+                   if(nombres[i] == buscar) {
+                       cout << "Nombre: " << nombres[i] << "\n";
+                       cout << "Edad: " << edades[i] << "\n";
+                       encontrado = true;
+                       break;
+                   }
+               }
+               if(!encontrado) cout << "Estudiante no encontrado\n";
+               break;
+           }
+       }
+   } while(opcion != 5);
+   return 0;
+}
