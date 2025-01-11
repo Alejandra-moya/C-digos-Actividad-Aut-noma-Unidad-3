@@ -1,0 +1,44 @@
+#include <iostream>//Libreria estandar
+#include <vector>
+using namespace std;
+
+// Función para mostrar los precios más bajos
+void mostrar_precios_bajos(const vector<float>& precios_tienda1, const vector<float>& precios_tienda2) {
+    cout << "Precios mas bajos por producto:" << endl;
+    for (size_t i = 0; i < precios_tienda1.size(); i++) {
+        if (precios_tienda1[i] < precios_tienda2[i]) {
+            cout << "Producto " << (i + 1) << ": Tienda 1 tiene el precio mas bajo: $" << precios_tienda1[i] << endl;
+        } else if (precios_tienda1[i] > precios_tienda2[i]) {
+            cout << "Producto " << (i + 1) << ": Tienda 2 tiene el precio mas bajo: $" << precios_tienda2[i] << endl;
+        } else {
+            cout << "Producto " << (i + 1) << ": Ambos tienen el mismo precio: $" << precios_tienda1[i] << endl;
+        }
+    }
+}
+int main() {
+    int num_productos;
+
+    cout << "Ingrese el numero de productos: ";
+    cin >> num_productos;
+
+    vector<float> precios_tienda1(num_productos);
+    vector<float> precios_tienda2(num_productos);
+
+    // Ingreso de precios para la primera tienda
+    cout << "Ingrese los precios para la Tienda 1:" << endl;
+    for (int i = 0; i < num_productos; i++) {
+        cout << "Producto " << (i + 1) << ": ";
+        cin >> precios_tienda1[i];
+    }
+
+    // Ingreso de precios para la segunda tienda
+    cout << "Ingrese los precios para la Tienda 2:" << endl;
+    for (int i = 0; i < num_productos; i++) {
+        cout << "Producto " << (i + 1) << ": ";
+        cin >> precios_tienda2[i];
+    }
+    // Mostrar los precios más bajos
+    mostrar_precios_bajos(precios_tienda1, precios_tienda2);
+
+    return 0;
+}
